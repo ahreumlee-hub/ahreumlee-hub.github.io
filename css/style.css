@@ -1,0 +1,507 @@
+:root {
+    --bg: #ffffff;
+    --fg: #111;
+    --muted: #6a6a6a;
+    --maxw: 920px;
+    /* 이미지 최대 폭 */
+    --footer-h: 64px;
+    /* 하단 네비 높이(대략) */
+}
+
+/* 리셋 */
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    color: var(--fg);
+    font: 400 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+/* 랜딩(검정) */
+.landing {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    background: #000;
+    color: #fff;
+}
+
+.landing-inner {
+    width: min(1100px, 92vw);
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.brand .name {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.brand .role {
+    color: #cfcfcf
+}
+
+.hint {
+    opacity: .7;
+}
+
+/* 뷰어(흰) */
+.viewer {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    align-items: center;
+    padding: 28px 20px calc(var(--footer-h) + 12px);
+    background: var(--bg);
+}
+
+/* 상단 정보줄 */
+.topline {
+    align-self: start;
+    width: 100%;
+    max-width: calc(var(--maxw) + 200px);
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* 스테이지: 중앙 배치 */
+.stage {
+    margin: 0;
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 10px;
+}
+
+/* 이미지 + 페이드 */
+.photo {
+    max-width: min(84vw, var(--maxw));
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.photo.in {
+    opacity: 1;
+}
+
+/* 캡션(작게, 하단) */
+.caption {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* 좌/우 히트존(반폭). 풋터 안 덮게 bottom 지정 */
+.hit {
+    position: absolute;
+    top: 0;
+    bottom: calc(var(--footer-h) + 12px);
+    width: 50vw;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+.hit-left {
+    left: 0;
+}
+
+.hit-right {
+    right: 0;
+}
+
+/* 하단 네비 — 뷰어에 들어오면 나타나게 */
+.bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease;
+}
+
+.bottom-nav.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bottom-nav .link {
+    border-bottom: 1px solid currentColor;
+}
+
+.bottom-nav .link:hover {
+    border-bottom-width: 2px;
+}
+
+.bottom-nav .dash {
+    opacity: .6
+}
+
+/* 패널 공통 */
+[hidden] {
+    display: none !important;
+}
+
+.panel {
+    position: fixed;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+}
+
+.panel.show {
+    display: grid;
+    pointer-events: auto;
+}
+
+body.dim .viewer {
+    filter: brightness(.65);
+}
+
+/* Index: 우측 슬라이드 */
+.panel-index {
+    justify-items: end;
+    background: rgba(0, 0, 0, .28);
+    z-index: 1000;
+}
+
+.panel-index .panel-inner {
+    width: min(520px, 86vw);
+    height: 100%;
+    background: rgba(255, 255, 255, .96);
+    border-left: 1px solid rgba(0, 0, 0, .08);
+    box-shadow: -24px 0 40px rgba(0, 0, 0, .08);
+    transform: translateX(100%);
+    transition: transform .24s ease;
+    padding: 24px 28px 32px;
+    overflow: auto;
+}
+
+.panel-index.show .panel-inner {
+    transform: translateX(0);
+}
+
+.panel-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.panel-close {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 2px 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.panel-title {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+}
+
+.index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.index-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+}
+
+.index-list a {
+    text-decoration: none;
+}
+
+.index-list a:hover {
+    font-style: italic;
+    color: red;
+}
+
+.index-list .n {
+    color: var(--muted);
+}
+
+/* Thumbs: 전체 화면 */
+.panel-thumbs {
+    background: #fff;
+    z-index: 1100;
+    grid-template-rows: auto 1fr;
+}
+
+.thumbs-top {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.panel-thumbs .panel-close {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 2px 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.thumbs-grid {
+    padding: 0 20px 28px;
+    column-count: 4;
+    column-gap: 16px;
+    width: 100%;
+    overflow: auto;
+}
+
+@media (max-width:1024px) {
+    .thumbs-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width:720px) {
+    .thumbs-grid {
+        column-count: 2;
+    }
+}
+
+.thumbs-grid a {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 16px;
+    break-inside: avoid;
+}
+
+.thumbs-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 반응형 보정 */
+@media (max-width:560px) {
+    .photo {
+        max-width: 92vw;
+        max-height: 62vh;
+    }
+}
+
+/* contact: 이미지 대신 텍스트 박스만 중앙 배치 (좌측정렬) */
+.contact-box {
+    width: min(720px, 90vw);
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+    /* 좌측정렬 */
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0px;
+}
+
+/* contact 페이지에는 히트존이 없으니 .stage 기본 중앙 정렬만 사용 */
+
+/* 공통 브랜드 링크(좌상단 이름) */
+.brand-link {
+    text-decoration: none;
+}
+
+.brand-link:hover {
+    text-decoration: underline;
+}
+
+/* contact/포트폴리오 링크: hover시에만 밑줄 */
+.contact-list a,
+.contact-portfolio a {
+    text-decoration: none;
+}
+
+.contact-list a:hover,
+.contact-portfolio a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Sidebar & Contact — 1.2rem 타입셋 ===== */
+:root {
+/*    --fs-base: 1.2rem;*/
+    --lh-base: 1.6;
+    --panel-w: 680px;
+    /* 스샷처럼 적당히 좁은 폭 */
+}
+
+.panel-index .panel-nav {
+    display: none;
+}
+
+/* 우상단 X는 커스텀으로 */
+
+.panel-tabs{
+    font-size: 14px;
+}
+
+.panel-index .panel-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    margin-bottom: 18px;
+}
+
+.panel-index .panel-tabs a {
+    text-decoration: none;
+    color: inherit;
+    opacity: .8;
+    margin-right: 16px;
+}
+
+.panel-index .panel-tabs a:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.panel-index .btn-close {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    opacity: .6;
+}
+
+.panel-index .btn-close:hover {
+    opacity: 1;
+}
+
+.index-list {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+}
+
+.index-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    padding: 6px 0;
+}
+}
+
+.index-list a:hover {
+    text-decoration: underline;
+    text-decoration: none;
+    color: inherit;
+}
+
+.index-list .n {
+    color: #888;
+}
+
+/* Contact 페이지도 동일 타이포 & 폭 */
+.contact-wrap {
+    min-height: 100svh;
+    display: grid;
+    place-items: start;
+    padding-left: max(24px, 6vw);
+    padding-right: max(24px, 4vw);
+    background: #fff;
+}
+
+.contact-card {
+    width: min(var(--panel-w), 92vw);
+    margin-top: 28px;
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+}
+
+.contact-menu {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.brand-link {
+    text-decoration: none;
+}
+
+.brand-link:hover {
+    text-decoration: underline;
+}
+
+/* 1) 요청: contact 링크 hover 시에만 밑줄 */
+.contact-list a,
+.contact-portfolio a {
+    text-decoration: none;
+}
+
+.contact-list a:hover,
+.contact-portfolio a:hover {
+    text-decoration: underline;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px 0;
+    display: grid;
+    gap: 8px;
+}
+
+.contact-portfolio {
+    margin-top: 12px;
+}
+
+.index-list {
+    font-size: 14px;
+    /* 직접 px 지정 */
+}
