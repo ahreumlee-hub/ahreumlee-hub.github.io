@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A — Lee Ahreum</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="viewer" aria-label="Project A">
+    <div class="topline">
+      <a href="index.html" class="series brand-link">Lee Ahreum</a>
+      <span class="count"><span id="idx">1</span>/<span id="total">—</span></span>
+    </div>
+
+    <figure class="stage" aria-live="polite">
+      <img id="photo" class="photo" src="" alt="" />
+      <figcaption id="caption" class="caption"></figcaption>
+
+      <button class="hit hit-left" id="prev" aria-label="Previous"></button>
+      <button class="hit hit-right" id="next" aria-label="Next"></button>
+    </figure>
+
+    <footer class="bottom-nav show">
+      <a href="index.html" class="link">Home</a>
+    </footer>
+  </main>
+
+  <script>
+    const PREFIX = "B";
+    const TOTAL  = 3; // ← 실제 개수로 바꿔주세요
+    const IMAGES = Array.from({length: TOTAL}, (_,k)=>{
+      const n = String(k+1).padStart(2,'0');
+      return { src: `images/${PREFIX}_${n}.jpg`, title: `${PREFIX} ${n}` };
+    });
+
+    const photo=document.getElementById('photo'), caption=document.getElementById('caption');
+    const idxEl=document.getElementById('idx'), totalEl=document.getElementById('total');
+    const prev=document.getElementById('prev'), next=document.getElementById('next');
+    let i=0;
+
+    function fadeTo(src, title){
+      photo.classList.remove('in');
+      photo.addEventListener('transitionend', function onEnd(){
+        photo.removeEventListener('transitionend', onEnd);
+        const tmp=new Image();
+        tmp.onload=()=>{ photo.src=src; photo.alt=title; caption.textContent=title; requestAnimationFrame(()=>photo.classList.add('in')); };
+        tmp.src=src;
+      }, {once:true});
+    }
+    function show(k){
+      i=(k+IMAGES.length)%IMAGES.length;
+      const it=IMAGES[i]; fadeTo(it.src, it.title); idxEl.textContent=i+1;
+    }
+
+    (function init(){
+      totalEl.textContent=IMAGES.length;
+      const it=IMAGES[0]; photo.src=it.src; photo.alt=it.title; caption.textContent=it.title; idxEl.textContent=1;
+      requestAnimationFrame(()=>photo.classList.add('in'));
+    })();
+
+    prev.addEventListener('click', ()=>show(i-1));
+    next.addEventListener('click', ()=>show(i+1));
+    window.addEventListener('keydown', e=>{ if(e.key==='ArrowLeft')show(i-1); if(e.key==='ArrowRight')show(i+1); });
+  </script>
+</body>
+</html>
