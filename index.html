@@ -1,196 +1,231 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lee Ahreum — Recent</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <meta name="color-scheme" content="light only">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lee Ahreum — Recent</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="color-scheme" content="light only">
 </head>
+
 <body>
 
-  <!-- 랜딩(검정) : 스크롤다운 하면 아래 뷰어(흰)로 진입 -->
-  <section id="landing" class="landing" aria-label="Landing">
-    <div class="landing-inner">
-      <div class="brand">
-        <span class="name">Lee Ahreum</span>
-        <span class="role">Photographer</span>
-      </div>
-      <div class="hint" aria-hidden="true">Scroll ↓</div>
-    </div>
-  </section>
+    <!-- 랜딩(검정) : 스크롤다운 하면 아래 뷰어(흰)로 진입 -->
+    <section id="landing" class="landing" aria-label="Landing">
+        <div class="landing-inner">
+            <div class="brand">
+                <span class="name">Lee Ahreum</span>
+                <span class="role">Photographer</span>
+            </div>
+            <div class="hint" aria-hidden="true">Scroll ↓</div>
+        </div>
+    </section>
 
-  <!-- 뷰어(흰) : 한 화면, 좌/우 클릭으로 넘김 -->
-  <main id="viewer" class="viewer" aria-label="Viewer">
-    <div class="topline">
-      <span class="series">Lee Ahreum</span>
-      <span class="count"><span id="idx">1</span>/<span id="total">23</span></span>
-    </div>
+    <!-- 뷰어(흰) : 한 화면, 좌/우 클릭으로 넘김 -->
+    <main id="viewer" class="viewer" aria-label="Viewer">
+        <div class="topline">
+            <span class="series">Lee Ahreum</span>
+            <nav class="top-links" id="topNav">
+                <a href="#" class="link" id="openIndex" title="Index">Index</a>
+                <span class="dash">—</span>
+                <a href="#" class="link" id="openThumbs" title="Thumbs">Thumbs</a>
+            </nav>
+        </div>
 
-    <figure class="stage" aria-live="polite">
-      <img id="photo" class="photo" src="" alt="" />
-      <figcaption id="caption" class="caption"></figcaption>
+        <figure class="stage" aria-live="polite">
+            <img id="photo" class="photo" src="" alt="" />
+            <figcaption id="caption" class="caption"></figcaption>
 
-      <!-- 좌/우 히트존(반폭) -->
-      <button class="hit hit-left" id="prev" aria-label="Previous"></button>
-      <button class="hit hit-right" id="next" aria-label="Next"></button>
-    </figure>
+            <!-- 좌/우 히트존(반폭) -->
+            <button class="hit hit-left" id="prev" aria-label="Previous"></button>
+            <button class="hit hit-right" id="next" aria-label="Next"></button>
+        </figure>
 
-    <!-- 하단 네비 -->
-    <footer class="bottom-nav" id="bottomNav">
-      <a href="#" class="link" id="openIndex" title="Index">Index</a>
-      <span class="dash">—</span>
-      <a href="#" class="link" id="openThumbs" title="Thumbs">Thumbs</a>
-    </footer>
-  </main>
+        <!-- 하단 네비 -->
+        <footer class="bottom-nav" id="bottomNav">
+        <span class="count"><span id="idx">1</span>/<span id="total">23</span></span>
+        </footer>
+    </main>
 
-  <!-- Index: 우측 패널 -->
-<aside id="panel-index" class="panel panel-index" aria-label="Index" hidden>
-  <div class="panel-inner">
-    <div class="panel-head">
-      <div class="panel-tabs">
-        <a href="#" aria-current="page">Works</a>
-      </div>
-      <button class="btn-close" id="closeIndex" aria-label="Close"></button>
-    </div>
+    <!-- Index: 우측 패널 -->
+    <aside id="panel-index" class="panel panel-index" aria-label="Index" hidden>
+        <div class="panel-inner">
+            <div class="panel-head">
+                <div class="panel-tabs">
+                    <a href="#" aria-current="page">Works</a>
+                </div>
+                <button class="btn-close" id="closeIndex" aria-label="Close"></button>
+            </div>
 
-    <ul class="index-list">
-      <li><a href="index.html">Recent</a> <span class="n">23</span></li>
-      <li><a href="A.html">Work</a> <span class="n">34</span></li>
-      <li><a href="B.html">Work II</a> <span class="n">35</span></li>
-      <li><a href="C.html">Work III</a> <span class="n">32</span></li>
-      <li><a href="contact.html">Contact</a> <span class="n"></span></li>
-    </ul>
-  </div>
-</aside>
+            <ul class="index-list">
+                <li><a href="index.html">Recent</a> <span class="n">23</span></li>
+                <li><a href="A.html">Work</a> <span class="n">34</span></li>
+                <li><a href="B.html">Work II</a> <span class="n">35</span></li>
+                <li><a href="C.html">Work III</a> <span class="n">32</span></li>
+                <li><a href="contact.html">Contact</a> <span class="n"></span></li>
+            </ul>
+        </div>
+    </aside>
 
 
-  <!-- Thumbs: 전체 화면 오버레이 -->
-  <aside id="panel-thumbs" class="panel panel-thumbs" aria-label="Thumbnails" hidden>
-    <div class="thumbs-top">
-      <button class="panel-close" id="closeThumbs">Close</button>
-    </div>
-    <div class="thumbs-grid" id="thumbGrid" aria-live="polite"></div>
-  </aside>
+    <!-- Thumbs: 전체 화면 오버레이 -->
+    <aside id="panel-thumbs" class="panel panel-thumbs" aria-label="Thumbnails" hidden>
+        <div class="thumbs-top">
+            <button class="panel-close" id="closeThumbs">Close</button>
+        </div>
+        <div class="thumbs-grid" id="thumbGrid" aria-live="polite"></div>
+    </aside>
 
-  <script>
-    /* ---------- 데이터: images/01.jpg ~ 23.jpg ---------- */
-  const PREFIX = "Recent";     // 파일명: Recent_01.jpg …
-  const TOTAL  = 12;
-  const IMAGES = Array.from({length: TOTAL}, (_,k) => {
-    const n = String(k+1).padStart(2,'0');
-    return { src: `images/${PREFIX}_${n}.jpg`, title: `${PREFIX} ${n}` };
-  });
+    <script>
+        /* ---------- 데이터: images/01.jpg ~ 23.jpg ---------- */
+        const PREFIX = "Recent"; // 파일명: Recent_01.jpg …
+        const TOTAL = 12;
+        const IMAGES = Array.from({
+            length: TOTAL
+        }, (_, k) => {
+            const n = String(k + 1).padStart(2, '0');
+            return {
+                src: `images/${PREFIX}_${n}.jpg`,
+                title: `${PREFIX} ${n}`
+            };
+        });
 
-    /* ---------- 엘리먼트 ---------- */
-    const photo      = document.getElementById('photo');
-    const caption    = document.getElementById('caption');
-    const idxEl      = document.getElementById('idx');
-    const totalEl    = document.getElementById('total');
-    const prevBtn    = document.getElementById('prev');
-    const nextBtn    = document.getElementById('next');
+        /* ---------- 엘리먼트 ---------- */
+        const photo = document.getElementById('photo');
+        const caption = document.getElementById('caption');
+        const idxEl = document.getElementById('idx');
+        const totalEl = document.getElementById('total');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
 
-    const openIndex  = document.getElementById('openIndex');
-    const openThumbs = document.getElementById('openThumbs');
-    const closeIndex = document.getElementById('closeIndex');
-    const closeThumbs= document.getElementById('closeThumbs');
+        const openIndex = document.getElementById('openIndex');
+        const openThumbs = document.getElementById('openThumbs');
+        const closeIndex = document.getElementById('closeIndex');
+        const closeThumbs = document.getElementById('closeThumbs');
 
-    const indexPanel = document.getElementById('panel-index');
-    const thumbsPanel= document.getElementById('panel-thumbs');
-    const thumbGrid  = document.getElementById('thumbGrid');
-    const bottomNav  = document.getElementById('bottomNav');
-    const viewer     = document.getElementById('viewer');
+        const indexPanel = document.getElementById('panel-index');
+        const thumbsPanel = document.getElementById('panel-thumbs');
+        const thumbGrid = document.getElementById('thumbGrid');
+        const bottomNav = document.getElementById('bottomNav');
+        const viewer = document.getElementById('viewer');
 
-    let i = 0;
+        let i = 0;
 
-    /* ---------- 뷰어 표시 ---------- */
-    function fadeTo(src, title){
-      // 페이드아웃 후 교체 → 로드 → 페이드인
-      photo.classList.remove('in');
-      photo.addEventListener('transitionend', onFadeOut, {once:true});
-      function onFadeOut(){
-        const tmp = new Image();
-        tmp.onload = () => {
-          photo.src = src;
-          photo.alt = title;
-          caption.textContent = title;
-          requestAnimationFrame(()=>photo.classList.add('in'));
-        };
-        tmp.src = src;
-      }
-    }
+        /* ---------- 뷰어 표시 ---------- */
+        function fadeTo(src, title) {
+            // 페이드아웃 후 교체 → 로드 → 페이드인
+            photo.classList.remove('in');
+            photo.addEventListener('transitionend', onFadeOut, {
+                once: true
+            });
 
-    function show(k){
-      i = (k + IMAGES.length) % IMAGES.length;
-      const it = IMAGES[i];
-      fadeTo(it.src, it.title);
-      idxEl.textContent = i + 1;
-    }
+            function onFadeOut() {
+                const tmp = new Image();
+                tmp.onload = () => {
+                    photo.src = src;
+                    photo.alt = title;
+                    caption.textContent = title;
+                    requestAnimationFrame(() => photo.classList.add('in'));
+                };
+                tmp.src = src;
+            }
+        }
 
-    // 초기 렌더
-    (function init(){
-      totalEl.textContent = IMAGES.length;
-      const first = IMAGES[0];
-      photo.src = first.src;
-      photo.alt = first.title;
-      caption.textContent = first.title;
-      idxEl.textContent = 1;
-      requestAnimationFrame(()=>photo.classList.add('in'));
-    })();
+        function show(k) {
+            i = (k + IMAGES.length) % IMAGES.length;
+            const it = IMAGES[i];
+            fadeTo(it.src, it.title);
+            idxEl.textContent = i + 1;
+        }
 
-    // 좌/우 클릭, 키보드
-    prevBtn.addEventListener('click', ()=> show(i-1));
-    nextBtn.addEventListener('click', ()=> show(i+1));
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'ArrowLeft')  show(i-1);
-      if(e.key === 'ArrowRight') show(i+1);
-      if(e.key === 'Escape') { closePanel(indexPanel); closePanel(thumbsPanel); }
-    });
+        // 초기 렌더
+        (function init() {
+            totalEl.textContent = IMAGES.length;
+            const first = IMAGES[0];
+            photo.src = first.src;
+            photo.alt = first.title;
+            caption.textContent = first.title;
+            idxEl.textContent = 1;
+            requestAnimationFrame(() => photo.classList.add('in'));
+        })();
 
-    /* ---------- 패널 열고 닫기 ---------- */
-    function openPanel(panel){
-      panel.hidden = false;
-      panel.classList.add('show');
-      document.body.classList.add('dim');
-    }
-    function closePanel(panel){
-      panel.classList.remove('show');
-      panel.hidden = true;
-      document.body.classList.remove('dim');
-    }
+        // 좌/우 클릭, 키보드
+        prevBtn.addEventListener('click', () => show(i - 1));
+        nextBtn.addEventListener('click', () => show(i + 1));
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') show(i - 1);
+            if (e.key === 'ArrowRight') show(i + 1);
+            if (e.key === 'Escape') {
+                closePanel(indexPanel);
+                closePanel(thumbsPanel);
+            }
+        });
 
-    // Index
-    openIndex.addEventListener('click', (e)=>{ e.preventDefault(); openPanel(indexPanel); });
-    closeIndex.addEventListener('click', ()=> closePanel(indexPanel));
-    indexPanel.addEventListener('click', (e)=>{ if (e.target === indexPanel) closePanel(indexPanel); });
-    indexPanel.querySelectorAll('[data-go]').forEach(a=>{
-      a.addEventListener('click', (e)=>{ e.preventDefault(); show(parseInt(a.dataset.go,10)||0); closePanel(indexPanel); });
-    });
+        /* ---------- 패널 열고 닫기 ---------- */
+        function openPanel(panel) {
+            panel.hidden = false;
+            panel.classList.add('show');
+            document.body.classList.add('dim');
+        }
 
-    // Thumbs (무작위 배열)
-    openThumbs.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const shuffled = IMAGES.map((x,idx)=>({x, idx})).sort(()=>Math.random()-0.5);
-      thumbGrid.innerHTML = shuffled.map(({x, idx}) => (
-        `<a href="#" data-go="${idx}"><img src="${x.src}" alt="${x.title}"></a>`
-      )).join('');
-      openPanel(thumbsPanel);
-    });
-    closeThumbs.addEventListener('click', ()=> closePanel(thumbsPanel));
-    thumbsPanel.addEventListener('click', (e)=>{
-      if (e.target === thumbsPanel) return closePanel(thumbsPanel);
-      const a = e.target.closest('a[data-go]');
-      if (!a) return;
-      e.preventDefault();
-      show(parseInt(a.dataset.go,10)||0);
-      closePanel(thumbsPanel);
-    });
+        function closePanel(panel) {
+            panel.classList.remove('show');
+            panel.hidden = true;
+            document.body.classList.remove('dim');
+        }
 
-    /* ---------- 하단 네비: 뷰어에 들어와야 보이게 ---------- */
-    const io = new IntersectionObserver(([entry])=>{
-      bottomNav.classList.toggle('show', entry.isIntersecting);
-    }, {threshold: 0.6});
-    io.observe(viewer);
-  </script>
+        // Index
+        openIndex.addEventListener('click', (e) => {
+            e.preventDefault();
+            openPanel(indexPanel);
+        });
+        closeIndex.addEventListener('click', () => closePanel(indexPanel));
+        indexPanel.addEventListener('click', (e) => {
+            if (e.target === indexPanel) closePanel(indexPanel);
+        });
+        indexPanel.querySelectorAll('[data-go]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                show(parseInt(a.dataset.go, 10) || 0);
+                closePanel(indexPanel);
+            });
+        });
+
+        // Thumbs (무작위 배열)
+        openThumbs.addEventListener('click', (e) => {
+            e.preventDefault();
+            const shuffled = IMAGES.map((x, idx) => ({
+                x,
+                idx
+            })).sort(() => Math.random() - 0.5);
+            thumbGrid.innerHTML = shuffled.map(({
+                x,
+                idx
+            }) => (
+                `<a href="#" data-go="${idx}"><img src="${x.src}" alt="${x.title}"></a>`
+            )).join('');
+            openPanel(thumbsPanel);
+        });
+        closeThumbs.addEventListener('click', () => closePanel(thumbsPanel));
+        thumbsPanel.addEventListener('click', (e) => {
+            if (e.target === thumbsPanel) return closePanel(thumbsPanel);
+            const a = e.target.closest('a[data-go]');
+            if (!a) return;
+            e.preventDefault();
+            show(parseInt(a.dataset.go, 10) || 0);
+            closePanel(thumbsPanel);
+        });
+
+        /* ---------- 하단 네비: 뷰어에 들어와야 보이게 ---------- */
+        const io = new IntersectionObserver(([entry]) => {
+            bottomNav.classList.toggle('show', entry.isIntersecting);
+        }, {
+            threshold: 0.6
+        });
+        io.observe(viewer);
+
+    </script>
 </body>
+
 </html>

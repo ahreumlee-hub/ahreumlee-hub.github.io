@@ -230,8 +230,8 @@ body.dim .viewer {
 .panel-close {
     background: transparent;
     border: 1px solid #000;
-    padding: 2px 8px;
-    font-size: 1.2rem;
+    padding: 7px 12px;
+    font-size: 0.7rem;
     cursor: pointer;
 }
 
@@ -282,8 +282,8 @@ body.dim .viewer {
 .panel-thumbs .panel-close {
     background: transparent;
     border: 1px solid #000;
-    padding: 2px 8px;
-    font-size: 1.2rem;
+    padding: 7px 12px;
+    font-size: 0.7rem;
     cursor: pointer;
 }
 
@@ -504,4 +504,26 @@ body.dim .viewer {
 .index-list {
     font-size: 14px;
     /* 직접 px 지정 */
+}
+
+/* 위쪽에 올린 Index — Thumbs 스타일 */
+.top-links {
+  display: flex;
+  gap: 15px;        /* 링크 사이 간격 */
+  align-items: center;
+}
+.top-links .link {
+  border-bottom: 1px solid currentColor;
+}
+.top-links .link:hover {
+  border-bottom-width: 2px;  /* 마우스 올리면 더 두꺼워짐 */
+}
+.top-links .dash {
+  opacity: 0.6;
+}
+
+/* 아래쪽에 내린 1/12 스타일 */
+.bottom-nav .count {
+  font-size: 14px;
+  color: gray;
 }
